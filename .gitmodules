@@ -1,0 +1,3 @@
+[submodule "cabana"]
+	path = cabana
+	url = https://github.com/RetroPilot/cabana

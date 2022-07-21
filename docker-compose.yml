@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  cabana:
+    restart: on-failure
+    build: ./cabana
+    ports:
+      - '80:80'
+  cabana-handler:
+    restart: on-failure
+    build: .
+    volumes:
+      - type: bind
+        source: ./routes
+        target: /data/routes
+    ports:
+      - '3000:3000'
+  nginx:
+    build: ./nginx
+    ports:
+    - '8080:8080'
+    depends_on:
+    - cabana
+    - cabana-handler
